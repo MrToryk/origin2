@@ -1,0 +1,14 @@
+D:\GitHub\Project\ST_Project_2024\Test\ServerTest\ServerTest\bin\Debug\ServerTest.exe.config
+D:\GitHub\Project\ST_Project_2024\Test\ServerTest\ServerTest\bin\Debug\ServerTest.exe
+D:\GitHub\Project\ST_Project_2024\Test\ServerTest\ServerTest\bin\Debug\ServerTest.pdb
+D:\GitHub\Project\ST_Project_2024\Test\ServerTest\ServerTest\bin\Debug\MySql.Data.dll
+D:\GitHub\Project\ST_Project_2024\Test\ServerTest\ServerTest\bin\Debug\System.Memory.dll
+D:\GitHub\Project\ST_Project_2024\Test\ServerTest\ServerTest\bin\Debug\System.Threading.Tasks.Extensions.dll
+D:\GitHub\Project\ST_Project_2024\Test\ServerTest\ServerTest\bin\Debug\System.Numerics.Vectors.dll
+D:\GitHub\Project\ST_Project_2024\Test\ServerTest\ServerTest\bin\Debug\System.Buffers.dll
+D:\GitHub\Project\ST_Project_2024\Test\ServerTest\ServerTest\bin\Debug\MySql.Data.xml
+D:\GitHub\Project\ST_Project_2024\Test\ServerTest\ServerTest\obj\Debug\ServerTest.csproj.AssemblyReference.cache
+D:\GitHub\Project\ST_Project_2024\Test\ServerTest\ServerTest\obj\Debug\ServerTest.csproj.CoreCompileInputs.cache
+D:\GitHub\Project\ST_Project_2024\Test\ServerTest\ServerTest\obj\Debug\ServerTest.csproj.CopyComplete
+D:\GitHub\Project\ST_Project_2024\Test\ServerTest\ServerTest\obj\Debug\ServerTest.exe
+D:\GitHub\Project\ST_Project_2024\Test\ServerTest\ServerTest\obj\Debug\ServerTest.pdb
