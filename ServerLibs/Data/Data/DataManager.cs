@@ -9,15 +9,14 @@ using System.Data;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 
-namespace ServerTest
+namespace Data
 {
-    internal class Program
+    internal class DataManager
     {
-        
         static void Main(string[] args)
         {
             MySql.Data.MySqlClient.MySqlConnection conn;
-          
+
             string myConnectionString;
 
             myConnectionString = "server=127.0.0.2;uid=root;" +
@@ -49,5 +48,4 @@ namespace ServerTest
             }
             Console.ReadLine();
         }
-    }
 }
