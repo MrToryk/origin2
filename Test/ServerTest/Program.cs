@@ -37,7 +37,7 @@ namespace ServerTest
                 cmd = new MySqlCommand(sql, conn);
                 MySqlDataReader rdr = cmd.ExecuteReader();
 
-                while (rdr.Read())
+                while (rdr.Read())  
                 {
                     Console.WriteLine(rdr[0] + " -- " + rdr[1]);
                 }
