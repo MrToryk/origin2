@@ -8,8 +8,6 @@
 
         public int Amount { get; set; }
 
-        public float PricePerUnit { get; set; }
-
         public DateTime SaleDate { get; set; }
 
         public Discount Discount { get; set; }
