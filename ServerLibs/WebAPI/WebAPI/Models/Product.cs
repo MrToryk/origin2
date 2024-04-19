@@ -4,23 +4,23 @@
     {
         public int Id { get; set; }
 
-        public string Name { get; set; }
+        public string name { get; set; }
 
-        public float MinimalPrice { get; set; }
+        public double MinimalPrice { get; set; }
 
-        public float SellingPrice { get; set; }
+        public double SellingPrice { get; set; }
 
         public int StoredAmmount { get; set; }
 
         public DateOnly IssueDate { get; set; }
 
-        public DateOnly ExpireDate { get; set; }
+        public DateOnly? ExpireDate { get; set; }
 
-        public User User { get; set; }
+        public User Owner_ { get; set; }
 
-        public Category Category { get; set; }
+        public Category? Category_ { get; set; }
 
-        public Discount Discount { get; set; }
+        public Discount? Discount_ { get; set; }
 
         public ICollection<Sale> Sales { get; set; }
     }

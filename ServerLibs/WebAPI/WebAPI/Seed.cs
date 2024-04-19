@@ -20,7 +20,7 @@ namespace WebAPI
                     {
                         Product = new Product()
                         {
-                            Name = "Pikachu",
+                            name = "Pikachu",
                             MinimalPrice = 19,
                             SellingPrice = 39,
                             StoredAmmount = 14,
@@ -33,17 +33,24 @@ namespace WebAPI
                             Amount = 1,
                             User = new User()
                             {
-                                Name = "UNKNOWN",
+                                name = "UNKNOWN",
                                 Password = "UNDEFINED",
                                 Role = new Role()
                                 {
-                                    Name = "God"
+                                    name = "God"
                                 }
                             }
                         }
                     },
                 };
-                dataContext.Sales.AddRange(sales);
+                var categories = new List<Category>()
+                {
+                    new Category()
+                    {
+                        Name = "TestCategory"
+                    }
+                };
+                dataContext.Categories.AddRange(categories);
                 dataContext.SaveChanges();
             }
         }
