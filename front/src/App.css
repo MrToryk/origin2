@@ -1,7 +1,22 @@
 .App {
   text-align: center;
 }
-
+.buttonCart { 
+  display: inline-block; 
+  padding: 10px 20px; 
+  background-color: #007bff; /* Button background color */ 
+  color: #fff; /* Text color */ 
+  text-decoration: none; /* Remove underline from the link */ 
+  border: none; 
+  border-radius: 5px; /* Rounded corners */ 
+  cursor: pointer; 
+  font-weight: bold; 
+  transition: background-color 0.3s ease; /* Smooth hover effect */ 
+} 
+ 
+.buttonCart:hover { 
+  background-color: #0056b3; /* Change color on hover */ 
+} 
 .App-logo {
   height: 40vmin;
   pointer-events: none;

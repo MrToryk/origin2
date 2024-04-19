@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
+import Cart from "./components/Cart";
 
 import './App.css';
 import AuthProvider from "./hooks/AuthProvider";
@@ -14,6 +15,7 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route element={<PrivateRoute />}>
+              <Route path="/cart" element={<Cart />}></Route>
               <Route path="/dashboard" element={<Dashboard />} />
             </Route>
             {            
