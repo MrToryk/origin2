@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "csYXxuHUK9dpaN6bIj7WzFHlG1c7I3ga6FiYIzF3ZBHEH2nCNAWTJ5+UB2t/3rNMW2+dM6ENtA5gs+hEVRubuA==",
+  "dgSpecHash": "LcyX4/KrN+Bk1638fEftdpU9tzFAmwo9Mql3pbkbhmoxTQJ1bKWC/m89JelR7+Y4673AY0hqqkXlgMHtTpFc2A==",
   "success": true,
   "projectFilePath": "D:\\GitHub\\Project\\ST_Project_2024\\ServerLibs\\WebAPI\\WebAPI\\WebAPI.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\user\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
