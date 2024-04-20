@@ -11,6 +11,7 @@ namespace WebAPI.Interfaces
         ICollection<Sale> GetSalesByUser(int userId);
         bool UserExists(int id);
         bool CreateUser(User user, int roleId);
+        bool UpdateUser(User user, int roleId);
         bool Save();
     }
 }

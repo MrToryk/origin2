@@ -95,5 +95,33 @@ namespace WebAPI.Controllers
 
             return Ok("Successfully");
         }
+        [HttpPut("{discountId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public IActionResult UpdateDiscount(int discountId, [FromBody] DiscountDto updatedDiscount)
+        {
+            if (updatedDiscount == null)
+                return BadRequest(ModelState);
+
+            if (discountId != updatedDiscount.Id)
+                return BadRequest(ModelState);
+
+            if (!_discountRepository.DiscountExists(discountId))
+                return NotFound();
+
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            var discountMap = _mapper.Map<Discount>(updatedDiscount);
+
+            if (!_discountRepository.UpdateDiscount(discountMap))
+            {
+                ModelState.AddModelError("", "Something went wrong while updating discount");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
+        }
     }
 }

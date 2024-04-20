@@ -45,5 +45,12 @@ namespace WebAPI.Repository
             var saved = _context.SaveChanges();
             return saved > 0 ? true : false;
         }
+
+        public bool UpdateRole(Role role)
+        {
+            _context.Update(role);
+
+            return Save();
+        }
     }
 }

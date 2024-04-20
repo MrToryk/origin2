@@ -94,5 +94,34 @@ namespace WebAPI.Controllers
 
             return Ok("Successfully");
         }
+
+        [HttpPut("{roleId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public IActionResult UpdateRole(int roleId, [FromBody] RoleDto updatedRole)
+        {
+            if (updatedRole == null)
+                return BadRequest(ModelState);
+
+            if (roleId != updatedRole.Id)
+                return BadRequest(ModelState);
+
+            if (!_roleRepository.RoleExists(roleId))
+                return NotFound();
+
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            var roleMap = _mapper.Map<Role>(updatedRole);
+
+            if (!_roleRepository.UpdateRole(roleMap))
+            {
+                ModelState.AddModelError("", "Something went wrong while updating role");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
+        }
     }
 }

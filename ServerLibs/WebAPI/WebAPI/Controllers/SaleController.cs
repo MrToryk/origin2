@@ -69,5 +69,34 @@ namespace WebAPI.Controllers
 
             return Ok("Successfully");
         }
+
+        [HttpPut("{saleId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public IActionResult UpdateSale(int saleId, [FromQuery] int productId, [FromQuery] int userId, [FromBody] SaleDto updatedSale)
+        {
+            if (updatedSale == null)
+                return BadRequest(ModelState);
+
+            if (saleId != updatedSale.Id)
+                return BadRequest(ModelState);
+
+            if (!_saleRepository.SaleExists(saleId))
+                return NotFound();
+
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            var saleMap = _mapper.Map<Sale>(updatedSale);
+
+            if (!_saleRepository.UpdateSale(saleMap, productId, userId))
+            {
+                ModelState.AddModelError("", "Something went wrong while updating sale");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
+        }
     }
 }

@@ -46,5 +46,18 @@ namespace WebAPI.Repository
             var saved = _context.SaveChanges();
             return saved > 0 ? true : false;
         }
+
+        public bool UpdateSale(Sale sale, int productId, int userId)
+        {
+            var productEntity = _context.Products.Where(p => p.Id == productId).FirstOrDefault();
+            var userEntity = _context.Users.Where(u => u.Id == userId).FirstOrDefault();
+
+            if (productEntity != null) sale.Product = productEntity;
+            if (userEntity != null) sale.User = userEntity;
+
+            _context.Update(sale);
+
+            return Save();
+        }
     }
 }

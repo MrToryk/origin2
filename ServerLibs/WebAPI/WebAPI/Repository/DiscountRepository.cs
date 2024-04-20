@@ -45,5 +45,11 @@ namespace WebAPI.Repository
             var saved = _context.SaveChanges();
             return saved > 0 ? true : false;
         }
+
+        public bool UpdateDiscount(Discount discount)
+        {
+            _context.Update(discount);
+            return Save();
+        }
     }
 }

@@ -9,6 +9,7 @@ namespace WebAPI.Interfaces
         ICollection<Product> GetProductsByDiscount(int discId);
         bool DiscountExists(int id);
         bool CreateDiscount(Discount discount);
+        bool UpdateDiscount(Discount discount);
         bool Save();
     }
 }

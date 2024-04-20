@@ -56,6 +56,17 @@ namespace WebAPI.Repository
             return saved > 0 ? true : false;
         }
 
+        public bool UpdateUser(User user, int roleId)
+        {
+            var roleEntity = _context.Roles.Where(u => u.Id == roleId).FirstOrDefault();
+
+            if (roleEntity != null) user.Role = roleEntity;
+
+            _context.Update(user);
+
+            return Save();
+        }
+
         public bool UserExists(int id)
         {
             return _context.Users.Any(u => u.Id == id);

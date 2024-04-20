@@ -95,5 +95,33 @@ namespace WebAPI.Controllers
 
             return Ok("Successfully");
         }
+        [HttpPut("{productId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public IActionResult UpdateProduct(int productId, [FromQuery] int ownerId, [FromQuery] int discountId, [FromQuery] int categoryId, [FromBody] ProductDto updatedProduct)
+        {
+            if (updatedProduct == null)
+                return BadRequest(ModelState);
+
+            if (productId != updatedProduct.Id)
+                return BadRequest(ModelState);
+
+            if (!_productRepository.ProductExists(productId))
+                return NotFound();
+
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            var productMap = _mapper.Map<Product>(updatedProduct);
+
+            if (!_productRepository.UpdateProduct(productMap, ownerId, discountId, categoryId))
+            {
+                ModelState.AddModelError("", "Something went wrong while updating product");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
+        }
     }
 }
