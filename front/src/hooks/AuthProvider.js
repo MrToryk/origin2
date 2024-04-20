@@ -9,6 +9,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState({});
   const [token, setToken] = useState(site?.token || "");
   const navigate = useNavigate();
+
   const loginAction = async (data) => {
     try {
       const response = await fetch(url.api.login, {
@@ -19,7 +20,7 @@ const AuthProvider = ({ children }) => {
         body: JSON.stringify(data),
       });
       const res = await response.json();
-      console.log("res", res);
+
       if (res.user) {
         setUser(res.user);
         setToken(res.token);
@@ -34,7 +35,6 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  
   const registerAction = async (data) => {
     try {
       const response = await fetch(url.api.register, {
@@ -48,7 +48,7 @@ const AuthProvider = ({ children }) => {
       if (res.status === "ok") {
         setUser(res.user);
         setToken(res.token);
-        localStorage.setItem("site", res);
+        localStorage.setItem("site", JSON.stringify(res));
         navigate("/dashboard");
         return;
       } 
