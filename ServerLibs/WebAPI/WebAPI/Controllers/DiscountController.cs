@@ -4,6 +4,7 @@ using WebAPI.Interfaces;
 using WebAPI.Models;
 using WebAPI.Dto;
 using WebAPI.Repository;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace WebAPI.Controllers
 {
@@ -119,6 +120,31 @@ namespace WebAPI.Controllers
             {
                 ModelState.AddModelError("", "Something went wrong while updating discount");
                 return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
+        }
+
+        [HttpDelete("{discountId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public IActionResult DeleteDiscount(int discountId)
+        {
+            if (!_discountRepository.DiscountExists(discountId))
+                return NotFound();
+
+            var discountToDelete = _discountRepository.GetDiscount(discountId);
+
+            if (_discountRepository.GetProductsByDiscount(discountId).Any())
+                return BadRequest(ModelState);
+
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            if (!_discountRepository.DeleteDiscount(discountToDelete))
+            {
+                ModelState.AddModelError("", "Something went wrong while deleting discount");
             }
 
             return NoContent();

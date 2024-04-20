@@ -12,6 +12,7 @@ namespace WebAPI.Interfaces
         bool UserExists(int id);
         bool CreateUser(User user, int roleId);
         bool UpdateUser(User user, int roleId);
+        bool DeleteUser(User user);
         bool Save();
     }
 }

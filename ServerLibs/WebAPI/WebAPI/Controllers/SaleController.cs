@@ -98,5 +98,27 @@ namespace WebAPI.Controllers
 
             return NoContent();
         }
+
+        [HttpDelete("{saleId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public IActionResult DeleteSale(int saleId)
+        {
+            if (!_saleRepository.SaleExists(saleId))
+                return NotFound();
+
+            var saleToDelete = _saleRepository.GetSale(saleId);
+
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            if (!_saleRepository.DeleteSale(saleToDelete))
+            {
+                ModelState.AddModelError("", "Something went wrong while deleting sale");
+            }
+
+            return NoContent();
+        }
     }
 }

@@ -9,6 +9,7 @@ namespace WebAPI.Interfaces
         bool SaleExists(int id);
         bool CreateSale(Sale sale, int productId, int userId);
         bool UpdateSale(Sale sale, int productId, int userId);
+        bool DeleteSale(Sale sale);
         bool Save();
     }
 }

@@ -123,5 +123,30 @@ namespace WebAPI.Controllers
 
             return NoContent();
         }
+
+        [HttpDelete("{roleId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public IActionResult DeleteRole(int roleId)
+        {
+            if (!_roleRepository.RoleExists(roleId))
+                return NotFound();
+
+            var roleToDelete = _roleRepository.GetRole(roleId);
+
+            if (_roleRepository.GetUsersByRole(roleId).Any())
+                return BadRequest(ModelState);
+
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            if (!_roleRepository.DeleteRole(roleToDelete))
+            {
+                ModelState.AddModelError("", "Something went wrong while deleting role");
+            }
+
+            return NoContent();
+        }
     }
 }

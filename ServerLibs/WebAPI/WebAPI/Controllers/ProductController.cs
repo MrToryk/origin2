@@ -123,5 +123,30 @@ namespace WebAPI.Controllers
 
             return NoContent();
         }
+
+        [HttpDelete("{productId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public IActionResult DeleteProduct(int productId)
+        {
+            if (!_productRepository.ProductExists(productId))
+                return NotFound();
+
+            var productToDelete = _productRepository.GetProduct(productId);
+
+            if (_productRepository.GetSalesByProduct(productId).Any())
+                return BadRequest(ModelState);
+
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            if (!_productRepository.DeleteProduct(productToDelete))
+            {
+                ModelState.AddModelError("", "Something went wrong while deleting product");
+            }
+
+            return NoContent();
+        }
     }
 }

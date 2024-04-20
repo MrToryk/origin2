@@ -140,5 +140,30 @@ namespace WebAPI.Controllers
 
             return NoContent();
         }
+
+        [HttpDelete("{userId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public IActionResult DeleteUser(int userId)
+        {
+            if (!_userRepository.UserExists(userId))
+                return NotFound();
+
+            var userToDelete = _userRepository.GetUser(userId);
+
+            if (_userRepository.GetProductsByUser(userId).Any() || _userRepository.GetSalesByUser(userId).Any())
+                return BadRequest(ModelState);
+
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            if (!_userRepository.DeleteUser(userToDelete))
+            {
+                ModelState.AddModelError("", "Something went wrong while deleting user");
+            }
+
+            return NoContent();
+        }
     }
 }

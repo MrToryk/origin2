@@ -25,6 +25,13 @@ namespace WebAPI.Repository
             return Save();
         }
 
+        public bool DeleteUser(User user)
+        {
+            _context.Remove(user);
+
+            return Save();
+        }
+
         public ICollection<Product> GetProductsByUser(int userId)
         {
             return _context.Products.Where(p => p.Owner.Id == userId).ToList();

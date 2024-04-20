@@ -20,6 +20,13 @@ namespace WebAPI.Repository
             return Save();
         }
 
+        public bool DeleteDiscount(Discount discount)
+        {
+            _context.Remove(discount);
+
+            return Save();
+        }
+
         public bool DiscountExists(int id)
         {
             return _context.Discounts.Any(d => d.Id == id);

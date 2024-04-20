@@ -26,6 +26,13 @@ namespace WebAPI.Repository
             return Save();
         }
 
+        public bool DeleteSale(Sale sale)
+        {
+            _context.Remove(sale);
+
+            return Save();
+        }
+
         public Sale GetSale(int id)
         {
             return _context.Sales.Where(s => s.Id == id).FirstOrDefault();

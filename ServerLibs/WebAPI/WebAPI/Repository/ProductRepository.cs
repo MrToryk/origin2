@@ -78,5 +78,17 @@ namespace WebAPI.Repository
 
             return Save();
         }
+
+        public bool DeleteProduct(Product product)
+        {
+            _context.Remove(product);
+
+            return Save();
+        }
+
+        public ICollection<Sale> GetSalesByProduct(int prodId)
+        {
+            return _context.Sales.Where(s => s.ProductId == prodId).ToList();
+        }
     }
 }

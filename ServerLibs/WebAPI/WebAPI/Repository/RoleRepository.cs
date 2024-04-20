@@ -20,6 +20,13 @@ namespace WebAPI.Repository
             return Save();
         }
 
+        public bool DeleteRole(Role role)
+        {
+            _context.Remove(role);
+
+            return Save();
+        }
+
         public Role GetRole(int id)
         {
             return _context.Roles.Where(r => r.Id == id).FirstOrDefault();
