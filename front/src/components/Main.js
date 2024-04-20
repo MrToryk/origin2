@@ -11,10 +11,10 @@ const Main = () => {
               <h2>Categories</h2>
           </div>
           <div className="col">
-              {isLoading && <><div class="text-center allign-middle">
+              {isLoading && <><div className="text-center allign-middle">
                 <div>
-            <div class="spinner-border" role="status">
-                <span class="visually-hidden">Loading...</span>
+            <div className="spinner-border" role="status">
+                <span className="visually-hidden">Loading...</span>
                 </div>
             </div>
             </div></>}

@@ -6,7 +6,7 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   let site = JSON.parse(localStorage.getItem('site'));
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({});
   const [token, setToken] = useState(site?.token || "");
   const navigate = useNavigate();
   const loginAction = async (data) => {
@@ -19,8 +19,9 @@ const AuthProvider = ({ children }) => {
         body: JSON.stringify(data),
       });
       const res = await response.json();
+      console.log("res", res);
       if (res.user) {
-        setUser(res.user.name);
+        setUser(res.user);
         setToken(res.token);
         localStorage.setItem("site", JSON.stringify(res));
         navigate("/main");
@@ -30,9 +31,10 @@ const AuthProvider = ({ children }) => {
     } catch (err) {
       alert(err.message);
       console.error(err);
-      
     }
   };
+
+  
   const registerAction = async (data) => {
     try {
       const response = await fetch(url.api.register, {
@@ -44,7 +46,7 @@ const AuthProvider = ({ children }) => {
       });
       const res = await response.json();
       if (res.status === "ok") {
-        setUser(res.user.name);
+        setUser(res.user);
         setToken(res.token);
         localStorage.setItem("site", res);
         navigate("/dashboard");
@@ -59,7 +61,7 @@ const AuthProvider = ({ children }) => {
   };
 
   const logOut = () => {
-    setUser(null);
+    setUser({});
     setToken("");
     localStorage.removeItem("site");
     navigate("/login");

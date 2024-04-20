@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 import { useAuth } from "../hooks/AuthProvider";
 
@@ -15,8 +14,7 @@ function Nav() {
                     {auth?.token 
                         ?  <div className="nav-item dropdown">
                         <Link className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            {//localStorage.getItem("site").user.name
-                            console.log("asd", localStorage.getItem("site"))}
+                            {auth.user.name}
                         </Link>
                         <ul className="dropdown-menu">
                             <li><a className="dropdown-item" href="#">Profile</a></li>
