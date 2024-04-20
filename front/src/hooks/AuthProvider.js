@@ -18,11 +18,10 @@ const AuthProvider = ({ children }) => {
         body: JSON.stringify(data),
       });
       const res = await response.json();
-      if (res.data.user) {
-        console.log(res);
-        setUser(res.data.user.name);
+      if (res.user) {
+        setUser(res.user.name);
         setToken(res.token);
-        localStorage.setItem("site", res.token);
+        localStorage.setItem("site", res);
         navigate("/dashboard");
         return;
       } 
