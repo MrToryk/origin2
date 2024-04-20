@@ -1,0 +1,56 @@
+- home
+-- category
+--- items
+-- cart
+--- checkout
+--- add/remove items
+-- profile
+--- previous orders
+--- edit personal info
+--- personal discount info
+-- login
+-- register
+admin
+- dashboard
+-- category
+--- add
+--- edit
+--- remove
+-- item
+--- add
+--- edit
+--- remove
+-- statistic
+--- list items in store (count, total)
+--- list sold items (count, total)
+--- list out of order items
+-- discount management
+--- list of discounted items
+--- create personal discount
+--- assign discount to user
+-- user management
+--- user list
+--- add discount
+--- edit profile status
+
+category
+- id
+- name
+- description
+- image link
+
+item
+- id
+- name
+- decription
+- image link
+- category
+- price
+- discounted price
+- amount
+
+cart 
+- if item has dicount - personal discount is not applied
+- affects items in stock
+- items in cart
+- total price
