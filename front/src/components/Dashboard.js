@@ -7,11 +7,10 @@ function Dashboard() {
   return (
     <div className="container">
       <div>
-        <Link to ='/cart' className="buttonCart">cart</Link>
-        <h1 className="mainH1">Welcome! {auth.user?.username}</h1>
         <button onClick={() => auth.logOut()} className="btn-submit">
           logout
         </button>
+        <h1 className="mainH1">Welcome! {auth.user?.username}</h1>
       </div>
     </div>
   );
