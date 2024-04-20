@@ -2,14 +2,17 @@
 
 function Main() {
 
-
     return (
-        <div>
-            <h1>Hi !</h1>
-            <p>You're logged in with React 18 + Redux & JWT!!</p>
-            <h3>Users from secure api end point:</h3>            
-            </div>
-    );
-}
+        <div className="row">
+          <div className="col-3">
+              <h1>Categories</h1>
+          </div>
+          <div className="col">
+              <h1>Items</h1>
+          </div>
+        </div>
+      );
+    };
+    
 
 export { Main };

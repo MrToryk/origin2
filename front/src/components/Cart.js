@@ -1,9 +1,10 @@
 
 const Cart = () => {
   return (
-    <div>
+    <>
       <h1> Cart</h1>
-    </div>
+      <button className="btn btn-success">Checkout</button>
+    </>
   );
 };
 

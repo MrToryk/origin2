@@ -1,14 +1,15 @@
 .App {
   text-align: center;
 }
-.childtop{
-  width:50%;
-  float: left;
-  
+/* .checkout{
+  background-color: #343a40;
+  border: 0px;
+  color: rgba(255,255,255,.5);
 }
-.topofpage{
-
-}
+.checkout:hover{
+  border: 2px;
+  color: rgba(255,255,255,.75);
+} */
 .buttonCart { 
   display: inline-block; 
   padding: 10px 20px; 
