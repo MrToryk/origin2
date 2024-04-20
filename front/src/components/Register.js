@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "../hooks/AuthProvider";
 
-const Login = () => {
+const Register = () => {
   const [input, setInput] = useState({
     username: "",
     password: "",
@@ -64,4 +64,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
