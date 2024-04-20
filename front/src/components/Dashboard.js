@@ -1,6 +1,5 @@
 //import React, { useEffect } from "react";
 import { useAuth } from "../hooks/AuthProvider";
-import { Link} from "react-router-dom";
 
 function Dashboard() {
   const auth = useAuth(); 
