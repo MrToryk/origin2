@@ -1,34 +1,17 @@
 //import { useEffect } from 'react';
 import Product from "./Product";
 import { properties as url } from '../properties.js';
+import useFetch from "../hooks/useFetch.js";
 
 const Main = () => {
-    const getProducts = () => {    
-        try {
-            const response =  fetch(url.api.products, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "x-token": localStorage.getItem("token"),
-            },
-            
-            });
-            const res =  response.json();
-            return;
-            throw new Error(res.message);
-            } catch (err) {
-                alert(err.message);
-                console.error(err);
-            
-            }
-    }   
+    const { data: products, isloading, message} = useFetch(url.api.products);
     return (
         <div className="row">
           <div className="col-3">
               <h1>Categories</h1>
           </div>
           <div className="col">
-              <Product />
+              {products && products.map((product)=>(<Product />))}
           </div>
         </div>
       );
