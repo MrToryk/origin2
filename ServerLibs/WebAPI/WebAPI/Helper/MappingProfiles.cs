@@ -9,6 +9,11 @@ namespace WebAPI.Helper
         public MappingProfiles() 
         {
             CreateMap<Product, ProductDto>();
+            CreateMap<Category, CategoryDto>();
+            CreateMap<Role, RoleDto>();
+            CreateMap<User, UserDto>();
+            CreateMap<Discount, DiscountDto>();
+            CreateMap<Sale, SaleDto>();
         }
     }
 }

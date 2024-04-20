@@ -20,17 +20,17 @@ namespace WebAPI.Repository
 
         public Product GetProduct(string name)
         {
-            return _context.Products.Where(p => p.name == name).FirstOrDefault();
+            return _context.Products.Where(p => p.Name == name).FirstOrDefault();
         }
 
-        public int GetProductSales(int id)
+        public int GetProductSaleNumber(int prodId)
         {
-            var sales = _context.Sales.Where(p => p.Product.Id == id);
+            var sales = _context.Sales.Where(p => p.Product.Id == prodId);
 
             if (sales.Count() <= 0)
                 return 0;
 
-            return sales.Sum(a => a.Amount);
+            return sales.Sum(a => a.SoldAmount);
         }
 
         public ICollection<Product> GetProducts()

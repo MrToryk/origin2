@@ -21,7 +21,7 @@ namespace WebAPI.Controllers
 
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(ICollection<Product>))]
-        public IActionResult GetProduct()
+        public IActionResult GetProducts()
         {
             var products = _mapper.Map<List<ProductDto>>(_productRepository.GetProducts());
 
@@ -47,15 +47,15 @@ namespace WebAPI.Controllers
             return Ok(product);
         }
 
-        [HttpGet("{id}/sales")]
+        [HttpGet("sales/{prodId}")]
         [ProducesResponseType(200, Type = typeof(int))]
         [ProducesResponseType(400)]
-        public IActionResult GetProductSales(int id)
+        public IActionResult GetProductSaleNumber(int prodId)
         {
-            if (!_productRepository.ProductExists(id))
+            if (!_productRepository.ProductExists(prodId))
                 return NotFound();
 
-            var sales = _productRepository.GetProductSales(id);
+            var sales = _productRepository.GetProductSaleNumber(prodId);
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

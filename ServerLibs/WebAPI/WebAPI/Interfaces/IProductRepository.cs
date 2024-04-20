@@ -7,7 +7,7 @@ namespace WebAPI.Interfaces
         ICollection<Product> GetProducts();
         Product GetProduct(int id);
         Product GetProduct(string name);
-        int GetProductSales(int id);
+        int GetProductSaleNumber(int prodId);
         bool ProductExists(int id);
     }
 }
