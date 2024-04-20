@@ -13,7 +13,7 @@ import Register from "./components/Register";
 
 function App() {
   return (
-    <div className="">
+    <>
           <AuthProvider>
           <Nav />
           <div className="container">
@@ -31,7 +31,7 @@ function App() {
             </Routes>
             </div>
           </AuthProvider>
-      </div>
+      </>
   );
 }
 

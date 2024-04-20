@@ -10,6 +10,12 @@
   border: 2px;
   color: rgba(255,255,255,.75);
 } */
+.tbl{
+  height: 100px;
+}
+#root {
+  height: 100vh;  
+}
 .buttonCart { 
   display: inline-block; 
   padding: 10px 20px; 
