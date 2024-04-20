@@ -1,7 +1,7 @@
 
 const Product = ({product}) => {
     return (
-        <div className="card mb-3 w-100">
+        <div className="card mb-3 w-100" key={product.id}>
         <div className="row g-0">
             <div className="col-md-4">
             <img src={product.image} className="img-fluid rounded-start" alt="..." />

@@ -15,10 +15,11 @@ function Nav() {
                     {auth?.token 
                         ?  <div className="nav-item dropdown">
                         <Link className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Profile
+                            {//localStorage.getItem("site").user.name
+                            console.log("asd", localStorage.getItem("site"))}
                         </Link>
                         <ul className="dropdown-menu">
-                            <li><a className="dropdown-item" href="#">Another action</a></li>
+                            <li><a className="dropdown-item" href="#">Profile</a></li>
                             <li><hr className="dropdown-divider" /></li>
                             <li><a className="dropdown-item" href="#">
                             <button onClick={() => auth.logOut()} className="btn btn-link nav-item nav-link d-inline">Logout</button> </a></li>

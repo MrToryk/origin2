@@ -5,13 +5,17 @@ import useFetch from "../hooks/useFetch.js";
 
 const Main = () => {
     const { data: products, isLoading, message} = useFetch(url.api.products);
-    console.log(products);
     return (
         <div className="row">
           <div className="col-3">
-              <h1>Categories</h1>
+              <h2>Categories</h2>
           </div>
           <div className="col">
+              {isLoading && <><div class="text-center">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            </div></>}
               {products && products.map((item)=>(<Product product={item} />))}
           </div>
         </div>
