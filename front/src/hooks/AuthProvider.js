@@ -5,8 +5,9 @@ import { properties as url } from '../properties.js';
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
+  let site = JSON.parse(localStorage.getItem('site'));
   const [user, setUser] = useState(null);
-  const [token, setToken] = useState(localStorage.getItem("site").token || "");
+  const [token, setToken] = useState(site?.token || "");
   const navigate = useNavigate();
   const loginAction = async (data) => {
     try {
@@ -21,7 +22,7 @@ const AuthProvider = ({ children }) => {
       if (res.user) {
         setUser(res.user.name);
         setToken(res.token);
-        localStorage.setItem("site", res);
+        localStorage.setItem("site", JSON.stringify(res));
         navigate("/main");
         return;
       } 
