@@ -1,5 +1,5 @@
 
-const Product = (product) => {
+const Product = ({product}) => {
     return (
         <div className="card mb-3 w-100">
         <div className="row g-0">
