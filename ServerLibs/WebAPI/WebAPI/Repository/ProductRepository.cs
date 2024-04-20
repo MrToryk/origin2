@@ -42,5 +42,26 @@ namespace WebAPI.Repository
         {
             return _context.Products.Any(p => p.Id == id);
         }
+
+        public bool CreateProduct(Product product, int ownerId, int discountId, int categoryId)
+        {
+            var userEntity = _context.Users.Where(u => u.Id == ownerId).FirstOrDefault();
+            var discountEntity = _context.Discounts.Where(d => d.Id == discountId).FirstOrDefault();
+            var categoryEntity = _context.Categories.Where(c => c.Id == categoryId).FirstOrDefault();
+
+            product.Owner = userEntity;
+            product.Discount = discountEntity;
+            product.Category = categoryEntity;
+
+            _context.Add(product);
+
+            return Save();
+        }
+
+        public bool Save()
+        {
+            var saved = _context.SaveChanges();
+            return saved > 0 ? true : false;
+        }
     }
 }

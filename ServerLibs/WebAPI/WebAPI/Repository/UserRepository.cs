@@ -14,6 +14,17 @@ namespace WebAPI.Repository
             _context = context;
         }
 
+        public bool CreateUser(User user, int roleId)
+        {
+            var roleEntity = _context.Roles.Where(r => r.Id == roleId).FirstOrDefault();
+
+            user.Role = roleEntity;
+
+            _context.Add(user);
+
+            return Save();
+        }
+
         public ICollection<Product> GetProductsByUser(int userId)
         {
             return _context.Products.Where(p => p.Owner.Id == userId).ToList();
@@ -37,6 +48,12 @@ namespace WebAPI.Repository
         public ICollection<User> GetUsers()
         {
             return _context.Users.Include(e => e.Role).ToList();
+        }
+
+        public bool Save()
+        {
+            var saved = _context.SaveChanges();
+            return saved > 0 ? true : false;
         }
 
         public bool UserExists(int id)

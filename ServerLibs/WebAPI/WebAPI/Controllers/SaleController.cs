@@ -47,5 +47,27 @@ namespace WebAPI.Controllers
 
             return Ok(sale);
         }
+
+        [HttpPost]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        public IActionResult CreateSale([FromQuery] int productId, [FromQuery] int userId, [FromBody] SaleDto saleCreate)
+        {
+            if (saleCreate == null)
+                return BadRequest(ModelState);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var saleMap = _mapper.Map<Sale>(saleCreate);
+
+            if (!_saleRepository.CreateSale(saleMap, productId, userId))
+            {
+                ModelState.AddModelError("", "Something went wrong while saving new sale");
+                return StatusCode(500, ModelState);
+            }
+
+            return Ok("Successfully");
+        }
     }
 }

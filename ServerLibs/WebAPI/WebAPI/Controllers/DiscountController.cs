@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using WebAPI.Interfaces;
 using WebAPI.Models;
 using WebAPI.Dto;
+using WebAPI.Repository;
 
 namespace WebAPI.Controllers
 {
@@ -61,6 +62,38 @@ namespace WebAPI.Controllers
                 return BadRequest(ModelState);
 
             return Ok(products);
+        }
+
+        [HttpPost]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        public IActionResult CreateDiscount([FromBody] DiscountDto discountCreate)
+        {
+            if (discountCreate == null)
+                return BadRequest(ModelState);
+
+            var discount = _discountRepository.GetDiscounts()
+                .Where(r => r.Title.Trim().ToUpper() == discountCreate.Title.Trim().ToUpper())
+                .FirstOrDefault();
+
+            if (discount != null)
+            {
+                ModelState.AddModelError("", "Discount already exists");
+                return StatusCode(422, ModelState);
+            }
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var discountMap = _mapper.Map<Discount>(discountCreate);
+
+            if (!_discountRepository.CreateDiscount(discountMap))
+            {
+                ModelState.AddModelError("", "Something went wrong while saving new discount");
+                return StatusCode(500, ModelState);
+            }
+
+            return Ok("Successfully");
         }
     }
 }

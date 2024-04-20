@@ -9,5 +9,7 @@ namespace WebAPI.Interfaces
         Product GetProduct(string name);
         int GetProductSaleNumber(int prodId);
         bool ProductExists(int id);
+        bool CreateProduct(Product product, int ownerId, int discountId, int categoryId);
+        bool Save();
     }
 }

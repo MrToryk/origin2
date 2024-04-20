@@ -4,11 +4,13 @@ namespace WebAPI.Interfaces
 {
     public interface IUserRepository
     {
-        public ICollection<User> GetUsers();
-        public User GetUser(int id);
-        public User GetUser(string username);
-        public ICollection<Product> GetProductsByUser(int userId);
-        public ICollection<Sale> GetSalesByUser(int userId);
-        public bool UserExists(int id);
+        ICollection<User> GetUsers();
+        User GetUser(int id);
+        User GetUser(string username);
+        ICollection<Product> GetProductsByUser(int userId);
+        ICollection<Sale> GetSalesByUser(int userId);
+        bool UserExists(int id);
+        bool CreateUser(User user, int roleId);
+        bool Save();
     }
 }

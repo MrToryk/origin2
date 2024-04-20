@@ -13,6 +13,13 @@ namespace WebAPI.Repository
             _context = context;
         }
 
+        public bool CreateRole(Role role)
+        {
+            _context.Add(role);
+
+            return Save();
+        }
+
         public Role GetRole(int id)
         {
             return _context.Roles.Where(r => r.Id == id).FirstOrDefault();
@@ -31,6 +38,12 @@ namespace WebAPI.Repository
         public bool RoleExists(int id)
         {
             return _context.Roles.Any(r => r.Id == id);
+        }
+
+        public bool Save()
+        {
+            var saved = _context.SaveChanges();
+            return saved > 0 ? true : false;
         }
     }
 }

@@ -17,6 +17,13 @@ namespace WebAPI.Repository
             return _context.Categories.Any(c => c.Id == id);
         }
 
+        public bool CreateCategory(Category category)
+        {
+            _context.Add(category);
+
+            return Save();
+        }
+
         public ICollection<Category> GetCategories()
         {
             return _context.Categories.ToList();
@@ -30,6 +37,12 @@ namespace WebAPI.Repository
         public ICollection<Product> GetProductsByCategory(int catId)
         {
             return _context.Products.Where(p => p.Category.Id == catId).ToList();
+        }
+
+        public bool Save()
+        {
+            var saved = _context.SaveChanges();
+            return saved > 0 ? true : false;
         }
     }
 }

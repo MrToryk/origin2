@@ -8,5 +8,7 @@ namespace WebAPI.Interfaces
         Category GetCategory(int id);
         ICollection<Product> GetProductsByCategory(int catId);
         bool CategoryExists(int id);
+        bool CreateCategory(Category category);
+        bool Save();
     }
 }

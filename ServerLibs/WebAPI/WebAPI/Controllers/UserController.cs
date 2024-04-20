@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using WebAPI.Interfaces;
 using WebAPI.Models;
 using WebAPI.Dto;
+using WebAPI.Repository;
 
 namespace WebAPI.Controllers
 {
@@ -77,6 +78,38 @@ namespace WebAPI.Controllers
                 BadRequest(ModelState);
 
             return Ok(sales);
+        }
+
+        [HttpPost]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        public IActionResult CreateUser([FromQuery] int roleId, [FromBody] UserDto userCreate)
+        {
+            if (userCreate == null)
+                return BadRequest(ModelState);
+
+            var user = _userRepository.GetUsers()
+                .Where(r => r.Username.Trim().ToUpper() == userCreate.Username.Trim().ToUpper())
+                .FirstOrDefault();
+
+            if (user != null)
+            {
+                ModelState.AddModelError("", "User already exists");
+                return StatusCode(422, ModelState);
+            }
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var userMap = _mapper.Map<User>(userCreate);
+
+            if (!_userRepository.CreateUser(userMap, roleId))
+            {
+                ModelState.AddModelError("", "Something went wrong while saving new user");
+                return StatusCode(500, ModelState);
+            }
+
+            return Ok("Successfully");
         }
     }
 }
