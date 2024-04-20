@@ -22,6 +22,30 @@ const AuthProvider = ({ children }) => {
         setUser(res.user.name);
         setToken(res.token);
         localStorage.setItem("site", res);
+        navigate("/main");
+        return;
+      } 
+      throw new Error(res.message);
+    } catch (err) {
+      alert(err.message);
+      console.error(err);
+      
+    }
+  };
+  const registerAction = async (data) => {
+    try {
+      const response = await fetch(url.api.register, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      const res = await response.json();
+      if (res.status === "ok") {
+        setUser(res.user.name);
+        setToken(res.token);
+        localStorage.setItem("site", res);
         navigate("/dashboard");
         return;
       } 
@@ -33,7 +57,6 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-
   const logOut = () => {
     setUser(null);
     setToken("");
@@ -42,7 +65,7 @@ const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ token, user, loginAction, logOut }}>
+    <AuthContext.Provider value={{ token, user, registerAction, loginAction, logOut }}>
       {children}
     </AuthContext.Provider>
   );

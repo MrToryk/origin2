@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "../hooks/AuthProvider";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [input, setInput] = useState({
@@ -56,7 +57,7 @@ const Login = () => {
     <button type="submit" data-mdb-button-init data-mdb-ripple-init className="btn btn-primary btn-block mb-4 w-100">Sign in</button>
   
     <div className="text-center">
-      <p>Not a member? <a href="#!">Register</a></p>
+      <p>Not a member? <Link to="/register">Register</Link></p>
     </div>
   </form>
   </div>

@@ -9,6 +9,7 @@ import PrivateRoute from "./router/route";
 import { Main } from "./components/Main";
 import Categories from "./components/Categories";
 import Product from "./components/Product";
+import Register from "./components/Register";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <div className="container">
             <Routes>
             <Route path="/" element={<Main />} />
+            <Route path="/register" element={<Register />} />
             <Route path="/categories" element={<Categories />} />
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/product" element={<Product />} />
