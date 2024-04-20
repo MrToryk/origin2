@@ -50,10 +50,10 @@ namespace WebAPI.Migrations
                     b.Property<int>("DiscountValue")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("EndDate")
+                    b.Property<DateTime>("EndingDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("StartDate")
+                    b.Property<DateTime>("StartingDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Title")
@@ -65,7 +65,7 @@ namespace WebAPI.Migrations
                     b.ToTable("Discounts");
                 });
 
-            modelBuilder.Entity("WebAPI.Models.Product", b =>
+            modelBuilder.Entity("WebAPI.Models.ProductId", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -73,32 +73,32 @@ namespace WebAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CategoryId")
+                    b.Property<int?>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<int>("DiscountId")
+                    b.Property<int?>("DiscountId")
                         .HasColumnType("int");
 
-                    b.Property<DateOnly>("ExpireDate")
+                    b.Property<DateOnly?>("ExpireDate")
                         .HasColumnType("date");
 
                     b.Property<DateOnly>("IssueDate")
                         .HasColumnType("date");
 
-                    b.Property<float>("MinimalPrice")
-                        .HasColumnType("real");
+                    b.Property<double>("MinimalPrice")
+                        .HasColumnType("float");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("SellingPrice")
-                        .HasColumnType("real");
-
-                    b.Property<int>("StoredAmmount")
+                    b.Property<int>("OwnerId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserId")
+                    b.Property<double>("SellingPrice")
+                        .HasColumnType("float");
+
+                    b.Property<int>("StoredAmmount")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -107,7 +107,7 @@ namespace WebAPI.Migrations
 
                     b.HasIndex("DiscountId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("OwnerId");
 
                     b.ToTable("Products");
                 });
@@ -131,52 +131,43 @@ namespace WebAPI.Migrations
 
             modelBuilder.Entity("WebAPI.Models.Sale", b =>
                 {
-                    b.Property<int>("Transaction_id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Product_id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Amount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DiscountId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("SaleDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Transaction_id", "Product_id");
-
-                    b.HasIndex("DiscountId");
-
-                    b.HasIndex("Product_id");
-
-                    b.ToTable("Sales");
-                });
-
-            modelBuilder.Entity("WebAPI.Models.Transaction", b =>
-                {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<float>("Amount")
-                        .HasColumnType("real");
+                    b.Property<int>("PricePerUnit")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("SaleDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("SoldAmount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ProductId");
+
                     b.HasIndex("UserId");
 
-                    b.ToTable("Transactions");
+                    b.ToTable("Sales");
                 });
 
-            modelBuilder.Entity("WebAPI.Models.User", b =>
+            modelBuilder.Entity("WebAPI.Models.UserId", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -188,16 +179,16 @@ namespace WebAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("RoleId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -206,72 +197,49 @@ namespace WebAPI.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("WebAPI.Models.Product", b =>
+            modelBuilder.Entity("WebAPI.Models.ProductId", b =>
                 {
                     b.HasOne("WebAPI.Models.Category", "Category")
                         .WithMany("CategoryProducts")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CategoryId");
 
-                    b.HasOne("WebAPI.Models.Discount", "Discount")
+                    b.HasOne("WebAPI.Models.Discount", "DiscountValue")
                         .WithMany("DiscountProducts")
-                        .HasForeignKey("DiscountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DiscountId");
 
-                    b.HasOne("WebAPI.Models.User", "User")
+                    b.HasOne("WebAPI.Models.UserId", "Owner")
                         .WithMany("UserProducts")
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("OwnerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Category");
 
-                    b.Navigation("Discount");
+                    b.Navigation("DiscountValue");
 
-                    b.Navigation("User");
+                    b.Navigation("Owner");
                 });
 
             modelBuilder.Entity("WebAPI.Models.Sale", b =>
                 {
-                    b.HasOne("WebAPI.Models.Discount", "Discount")
-                        .WithMany("DiscountSales")
-                        .HasForeignKey("DiscountId")
+                    b.HasOne("WebAPI.Models.ProductId", "ProductId")
+                        .WithMany("ProductSales")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebAPI.Models.Product", "Product")
-                        .WithMany("Sales")
-                        .HasForeignKey("Product_id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WebAPI.Models.Transaction", "Transaction")
-                        .WithMany("Sales")
-                        .HasForeignKey("Transaction_id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Discount");
-
-                    b.Navigation("Product");
-
-                    b.Navigation("Transaction");
-                });
-
-            modelBuilder.Entity("WebAPI.Models.Transaction", b =>
-                {
-                    b.HasOne("WebAPI.Models.User", "User")
-                        .WithMany("UserTransactions")
+                    b.HasOne("WebAPI.Models.UserId", "UserId")
+                        .WithMany("UserSales")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("User");
+                    b.Navigation("ProductId");
+
+                    b.Navigation("UserId");
                 });
 
-            modelBuilder.Entity("WebAPI.Models.User", b =>
+            modelBuilder.Entity("WebAPI.Models.UserId", b =>
                 {
                     b.HasOne("WebAPI.Models.Role", "Role")
                         .WithMany("RoleUsers")
@@ -290,13 +258,11 @@ namespace WebAPI.Migrations
             modelBuilder.Entity("WebAPI.Models.Discount", b =>
                 {
                     b.Navigation("DiscountProducts");
-
-                    b.Navigation("DiscountSales");
                 });
 
-            modelBuilder.Entity("WebAPI.Models.Product", b =>
+            modelBuilder.Entity("WebAPI.Models.ProductId", b =>
                 {
-                    b.Navigation("Sales");
+                    b.Navigation("ProductSales");
                 });
 
             modelBuilder.Entity("WebAPI.Models.Role", b =>
@@ -304,16 +270,11 @@ namespace WebAPI.Migrations
                     b.Navigation("RoleUsers");
                 });
 
-            modelBuilder.Entity("WebAPI.Models.Transaction", b =>
-                {
-                    b.Navigation("Sales");
-                });
-
-            modelBuilder.Entity("WebAPI.Models.User", b =>
+            modelBuilder.Entity("WebAPI.Models.UserId", b =>
                 {
                     b.Navigation("UserProducts");
 
-                    b.Navigation("UserTransactions");
+                    b.Navigation("UserSales");
                 });
 #pragma warning restore 612, 618
         }

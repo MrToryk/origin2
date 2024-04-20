@@ -14,36 +14,14 @@ namespace WebAPI
         {
             if (!dataContext.Sales.Any())
             {
-                var sales = new List<Sale>()
+                var categories = new List<Category>()
                 {
-                    new Sale()
+                    new Category()
                     {
-                        Product = new Product()
-                        {
-                            Name = "Pikachu",
-                            MinimalPrice = 19,
-                            SellingPrice = 39,
-                            StoredAmmount = 14,
-                            IssueDate = new DateOnly(2022,3,23),
-                            ExpireDate = new DateOnly(2032,1,1),
-                            
-                        },
-                        Transaction = new Transaction()
-                        {
-                            Amount = 1,
-                            User = new User()
-                            {
-                                Name = "UNKNOWN",
-                                Password = "UNDEFINED",
-                                Role = new Role()
-                                {
-                                    Name = "God"
-                                }
-                            }
-                        }
-                    },
+                        Name = "TestCategory"
+                    }
                 };
-                dataContext.Sales.AddRange(sales);
+                dataContext.Categories.AddRange(categories);
                 dataContext.SaveChanges();
             }
         }

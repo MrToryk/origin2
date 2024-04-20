@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using WebAPI.Interfaces;
 using WebAPI.Models;
+using WebAPI.Dto;
 
 namespace WebAPI.Controllers
 {
@@ -9,22 +11,56 @@ namespace WebAPI.Controllers
     public class ProductController : Controller
     {
         private readonly IProductRepository _productRepository;
+        private readonly IMapper _mapper;
 
-        public ProductController(IProductRepository productRepository)
+        public ProductController(IProductRepository productRepository, IMapper mapper)
         {
             _productRepository = productRepository;
+            _mapper = mapper;
         }
 
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(ICollection<Product>))]
-        public IActionResult GetProduct()
+        public IActionResult GetProducts()
         {
-            var products = _productRepository.GetProducts();
+            var products = _mapper.Map<List<ProductDto>>(_productRepository.GetProducts());
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             return Ok(products);
+        }
+
+        [HttpGet("{id}")]
+        [ProducesResponseType(200, Type = typeof(Product))]
+        [ProducesResponseType(400)]
+        public IActionResult GetProduct(int id) 
+        {
+            if (!_productRepository.ProductExists(id))
+                return NotFound();
+
+            var product = _mapper.Map<ProductDto>(_productRepository.GetProduct(id));
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            return Ok(product);
+        }
+
+        [HttpGet("sales/{prodId}")]
+        [ProducesResponseType(200, Type = typeof(int))]
+        [ProducesResponseType(400)]
+        public IActionResult GetProductSaleNumber(int prodId)
+        {
+            if (!_productRepository.ProductExists(prodId))
+                return NotFound();
+
+            var sales = _productRepository.GetProductSaleNumber(prodId);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            return Ok(sales);
         }
     }
 }
