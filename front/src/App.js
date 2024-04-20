@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
 import Cart from "./components/Cart";
@@ -12,21 +12,20 @@ function App() {
   return (
      <div className="app-container bg-light">
       <Nav />
-      <Router>
         <AuthProvider>
           <Routes>
           <Route path="/" element={<Main />} />
             <Route path="/login" element={<Login />} />
-            <Route element={<PrivateRoute />}>
-              <Route path="/cart" element={<Cart />}></Route>
-              <Route path="/dashboard" element={<Dashboard />} />
+              <Route ute element={<PrivateRoute />}>
 
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="*" element={<Navigate to="/" />} />
             </Route>
             {            
             }
           </Routes>
         </AuthProvider>
-      </Router>
     </div>
   );
 }

@@ -2,7 +2,7 @@
 import { useAuth } from "../hooks/AuthProvider";
 import { Link} from "react-router-dom";
 
-const Dashboard = () => {
+function Dashboard() {
   const auth = useAuth(); 
   return (
     <div className="container">

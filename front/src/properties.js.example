@@ -1,0 +1,5 @@
+export const properties = {
+    api: {
+        login: "http://127.0.0.1:3658/m1/514544-474148-default/login"
+    }
+};
