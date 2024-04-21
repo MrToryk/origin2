@@ -58,8 +58,8 @@ const Register = () => {
         <div data-mdb-input-init className="form-outline flex-fill mb-0">
             <input type="password" name="rpassword" id="rpassword" onChange={handleInput} className="form-control" />
             <label className="form-label" htmlFor="rpassword">Repeat your password</label>
-    </div>
         </div>
+    </div>
   
     <button type="submit" data-mdb-button-init data-mdb-ripple-init className="btn btn-primary btn-block mb-4 w-100">Sign in</button>
   

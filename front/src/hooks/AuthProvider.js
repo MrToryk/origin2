@@ -58,7 +58,31 @@ const AuthProvider = ({ children }) => {
       
     }
   };
-
+  const changeAction = async (data) => {
+    try{
+      let site = JSON.parse(localStorage.getItem('site'));
+      const response = await fetch(url.api.change, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-token": site?.token,
+        },
+        body: JSON.stringify(data),
+      });
+      const res = await response.json();
+      if (res.status === "ok") {
+        setUser(res.user);
+        setToken(res.token);
+        localStorage.setItem("site", JSON.stringify(res));
+        return;
+      } 
+      throw new Error(res.message);
+    } catch (err) {
+      alert(err.message);
+      console.error(err);
+      
+    }
+  }
   const logOut = () => {
     setUser({});
     setToken("");
@@ -67,7 +91,7 @@ const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ token, user, registerAction, loginAction, logOut }}>
+    <AuthContext.Provider value={{ token, user, registerAction, loginAction, changeAction, logOut }}>
       {children}
     </AuthContext.Provider>
   );
