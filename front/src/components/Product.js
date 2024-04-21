@@ -42,7 +42,7 @@ const Product = ({product}) => {
                 </div>
                 <div className="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
                   <div className="d-flex flex-row align-items-center mb-1">
-                    <i class="bi bi-currency-euro"></i>
+                    <i className="bi bi-currency-euro"></i>
                     <h4 className="mb-1 me-1">{(product.discounted ? product.discounted : product.price).toFixed(2)}</h4>
                     {product.discounted &&
                     <span className="text-danger"><s>{product.price.toFixed(2)}</s></span>}
