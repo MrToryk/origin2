@@ -9,7 +9,7 @@ const Product = ({product}) => {
                     <img src={product.image} className="w-100" alt={product.name} />
                     <a href="#!">
                       <div className="hover-overlay">
-                        <div className="mask" style={{'background-color': 'rgba(253, 253, 253, 0.15)'}}></div>
+                        <div className="mask" style={{'backgroundColor': 'rgba(253, 253, 253, 0.15)'}}></div>
                       </div>
                     </a>
                   </div>
