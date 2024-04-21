@@ -47,5 +47,78 @@ namespace WebAPI.Controllers
 
             return Ok(sale);
         }
+
+        [HttpPost]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        public IActionResult CreateSale([FromQuery] int productId, [FromQuery] int userId, [FromBody] SaleDto saleCreate)
+        {
+            if (saleCreate == null)
+                return BadRequest(ModelState);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var saleMap = _mapper.Map<Sale>(saleCreate);
+
+            if (!_saleRepository.CreateSale(saleMap, productId, userId))
+            {
+                ModelState.AddModelError("", "Something went wrong while saving new sale");
+                return StatusCode(500, ModelState);
+            }
+
+            return Ok("Successfully");
+        }
+
+        [HttpPut("{saleId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public IActionResult UpdateSale(int saleId, [FromQuery] int productId, [FromQuery] int userId, [FromBody] SaleDto updatedSale)
+        {
+            if (updatedSale == null)
+                return BadRequest(ModelState);
+
+            if (saleId != updatedSale.Id)
+                return BadRequest(ModelState);
+
+            if (!_saleRepository.SaleExists(saleId))
+                return NotFound();
+
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            var saleMap = _mapper.Map<Sale>(updatedSale);
+
+            if (!_saleRepository.UpdateSale(saleMap, productId, userId))
+            {
+                ModelState.AddModelError("", "Something went wrong while updating sale");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
+        }
+
+        [HttpDelete("{saleId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public IActionResult DeleteSale(int saleId)
+        {
+            if (!_saleRepository.SaleExists(saleId))
+                return NotFound();
+
+            var saleToDelete = _saleRepository.GetSale(saleId);
+
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            if (!_saleRepository.DeleteSale(saleToDelete))
+            {
+                ModelState.AddModelError("", "Something went wrong while deleting sale");
+            }
+
+            return NoContent();
+        }
     }
 }

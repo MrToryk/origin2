@@ -12,6 +12,21 @@ namespace WebAPI.Repository
         {
             _context = context;
         }
+
+        public bool CreateDiscount(Discount discount)
+        {
+            _context.Add(discount);
+
+            return Save();
+        }
+
+        public bool DeleteDiscount(Discount discount)
+        {
+            _context.Remove(discount);
+
+            return Save();
+        }
+
         public bool DiscountExists(int id)
         {
             return _context.Discounts.Any(d => d.Id == id);
@@ -30,6 +45,18 @@ namespace WebAPI.Repository
         public ICollection<Product> GetProductsByDiscount(int discId)
         {
             return _context.Products.Where(p => p.Discount.Id == discId).ToList();
+        }
+
+        public bool Save()
+        {
+            var saved = _context.SaveChanges();
+            return saved > 0 ? true : false;
+        }
+
+        public bool UpdateDiscount(Discount discount)
+        {
+            _context.Update(discount);
+            return Save();
         }
     }
 }

@@ -61,7 +61,7 @@ namespace WebAPI.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     RoleId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -84,7 +84,7 @@ namespace WebAPI.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MinimalPrice = table.Column<double>(type: "float", nullable: false),
                     SellingPrice = table.Column<double>(type: "float", nullable: false),
-                    StoredAmmount = table.Column<int>(type: "int", nullable: false),
+                    StoredAmount = table.Column<int>(type: "int", nullable: false),
                     IssueDate = table.Column<DateOnly>(type: "date", nullable: false),
                     ExpireDate = table.Column<DateOnly>(type: "date", nullable: true),
                     OwnerId = table.Column<int>(type: "int", nullable: false),
@@ -118,13 +118,11 @@ namespace WebAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    User_id = table.Column<int>(type: "int", nullable: false),
-                    Product_id = table.Column<int>(type: "int", nullable: false),
-                    SoldAmount = table.Column<int>(type: "int", nullable: false),
-                    PricePerUnit = table.Column<int>(type: "int", nullable: false),
-                    SaleDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    ProductId = table.Column<int>(type: "int", nullable: false)
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    SoldAmount = table.Column<int>(type: "int", nullable: false),
+                    PricePerUnit = table.Column<double>(type: "float", nullable: false),
+                    SaleDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {

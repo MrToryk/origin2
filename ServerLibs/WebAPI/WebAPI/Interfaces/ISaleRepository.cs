@@ -4,8 +4,12 @@ namespace WebAPI.Interfaces
 {
     public interface ISaleRepository
     {
-        public ICollection<Sale> GetSales();
-        public Sale GetSale(int id);
-        public bool SaleExists(int id);
+        ICollection<Sale> GetSales();
+        Sale GetSale(int id);
+        bool SaleExists(int id);
+        bool CreateSale(Sale sale, int productId, int userId);
+        bool UpdateSale(Sale sale, int productId, int userId);
+        bool DeleteSale(Sale sale);
+        bool Save();
     }
 }

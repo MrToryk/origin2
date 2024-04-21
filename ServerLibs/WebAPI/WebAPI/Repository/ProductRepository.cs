@@ -42,5 +42,53 @@ namespace WebAPI.Repository
         {
             return _context.Products.Any(p => p.Id == id);
         }
+
+        public bool CreateProduct(Product product, int ownerId, int discountId, int categoryId)
+        {
+            var userEntity = _context.Users.Where(u => u.Id == ownerId).FirstOrDefault();
+            var discountEntity = _context.Discounts.Where(d => d.Id == discountId).FirstOrDefault();
+            var categoryEntity = _context.Categories.Where(c => c.Id == categoryId).FirstOrDefault();
+
+            product.Owner = userEntity;
+            product.Discount = discountEntity;
+            product.Category = categoryEntity;
+
+            _context.Add(product);
+
+            return Save();
+        }
+
+        public bool Save()
+        {
+            var saved = _context.SaveChanges();
+            return saved > 0 ? true : false;
+        }
+
+        public bool UpdateProduct(Product product, int ownerId, int discountId, int categoryId)
+        {
+            var userEntity = _context.Users.Where(u => u.Id == ownerId).FirstOrDefault();
+            var discountEntity = _context.Discounts.Where(d => d.Id == discountId).FirstOrDefault();
+            var categoryEntity = _context.Categories.Where(c => c.Id == categoryId).FirstOrDefault();
+
+            if (userEntity != null) product.Owner = userEntity;
+            if (discountEntity != null) product.Discount = discountEntity;
+            if (categoryEntity != null) product.Category = categoryEntity;
+
+            _context.Update(product);
+
+            return Save();
+        }
+
+        public bool DeleteProduct(Product product)
+        {
+            _context.Remove(product);
+
+            return Save();
+        }
+
+        public ICollection<Sale> GetSalesByProduct(int prodId)
+        {
+            return _context.Sales.Where(s => s.ProductId == prodId).ToList();
+        }
     }
 }

@@ -4,9 +4,13 @@ namespace WebAPI.Interfaces
 {
     public interface IDiscountRepository
     {
-        public ICollection<Discount> GetDiscounts();
-        public Discount GetDiscount(int id);
-        public ICollection<Product> GetProductsByDiscount(int discId);
-        public bool DiscountExists(int id);
+        ICollection<Discount> GetDiscounts();
+        Discount GetDiscount(int id);
+        ICollection<Product> GetProductsByDiscount(int discId);
+        bool DiscountExists(int id);
+        bool CreateDiscount(Discount discount);
+        bool UpdateDiscount(Discount discount);
+        bool DeleteDiscount(Discount discount);
+        bool Save();
     }
 }
