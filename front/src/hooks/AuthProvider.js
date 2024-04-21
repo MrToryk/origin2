@@ -5,7 +5,7 @@ import { properties as url } from '../properties.js';
 const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   let site = JSON.parse(localStorage.getItem('site'));
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(site?.user || {});
   const [token, setToken] = useState(site?.token || "");
   const navigate = useNavigate();
 

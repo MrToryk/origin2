@@ -1,32 +1,48 @@
 import { useState, useEffect } from 'react';
 
-const useFetch = (url) => {
-  const [data, setData] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [message, setMessage] = useState(null);
+export const useFetchType = (type, url) => {
+  const [data, setData] = useState({});
 
   useEffect(() => {
-      fetch(url)
-      .then(response => {
-        if (!response.status === "ok") { 
-          // error coming back from server
-          throw Error('could not fetch the data for that resource');
-        } 
-        return response.json();
-      })
-      .then(res => {
-        //console.log(res);
-        setIsLoading(false);
-        setData(res.data);
-        setMessage(res.message);
-      })
-      .catch(err => {
-        setIsLoading(false);
-        setMessage(err.message);
-      })
-  }, [url])
+    let isSubscribed = true;
+  
+    // declare the async data fetching function
+    const fetchData = async () => {
+      // get the data from the api
+      const data = await fetch(url);
+      // convert the data to json
+      const json = await data.json();
+  
+      // set state with the result if `isSubscribed` is true
+      if (isSubscribed) {
+        //console.log("json", json)
+        setData({[type]: {
+          "data": json.data,
+          "message": json.message,
+        }});
+      }
+    }
+  
+    // call the function
+    fetchData()
+      // make sure to catch any error
+      .catch(console.error);;
+  
+    // cancel any future `setData`
+    return () => isSubscribed = false;
+  }, [type, url]);
 
-  return { data, isLoading, message };
+  let result = null; 
+  let message = "";
+
+  if (type in data) {
+    //console.log("data",data, data.valueOf(type))
+    result = data[type].data;
+    message = data[type].message;
+  }
+
+  return {result, message};
 }
 
-export default useFetch;
+
+//export default useFetch, useFetchType;

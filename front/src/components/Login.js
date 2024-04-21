@@ -29,39 +29,38 @@ const Login = () => {
   };
 
   return (
-    <>
-    <div className="d-flex justify-content-center">
-    <form className="w-25" onSubmit={handleSubmitEvent}>
-    <div data-mdb-input-init className="form-outline mb-4">
-      <input           type="username"
-          id="user-username"
-          name="username"
-          //placeholder="example@yahoo.com"
-          aria-describedby="user-username"
-          aria-invalid="false"
-          onChange={handleInput} className="form-control" />
-      <label className="form-label" htmlFor="user-username">Username</label>
+    <div className="container d-flex align-items-center justify-content-center h-100">
+        <form className="w-25" onSubmit={handleSubmitEvent}>
+          <div data-mdb-input-init className="form-outline mb-4">
+            <input 
+                type="username"
+                id="user-username"
+                name="username"
+                //placeholder="example@yahoo.com"
+                aria-describedby="user-username"
+                aria-invalid="false"
+                onChange={handleInput} className="form-control" />
+            <label className="form-label" htmlFor="user-username">Username</label>
+          </div>
+        
+          <div data-mdb-input-init className="form-outline mb-4">
+            <input
+                type="password"
+                id="password"
+                name="password"
+                aria-describedby="user-password"
+                aria-invalid="false"
+                onChange={handleInput} className="form-control" />
+            <label className="form-label" htmlFor="password">Password</label>
+          </div>
+        
+          <button type="submit" data-mdb-button-init data-mdb-ripple-init className="btn btn-primary btn-block mb-4 w-100">Sign in</button>
+        
+          <div className="text-center">
+            <p>Not a member? <Link to="/register">Register</Link></p>
+          </div>
+        </form>
     </div>
-  
-    <div data-mdb-input-init className="form-outline mb-4">
-      <input           type="password"
-          id="password"
-          name="password"
-          aria-describedby="user-password"
-          aria-invalid="false"
-          onChange={handleInput} className="form-control" />
-      <label className="form-label" htmlFor="password">Password</label>
-    </div>
-  
-  
-    <button type="submit" data-mdb-button-init data-mdb-ripple-init className="btn btn-primary btn-block mb-4 w-100">Sign in</button>
-  
-    <div className="text-center">
-      <p>Not a member? <Link to="/register">Register</Link></p>
-    </div>
-  </form>
-  </div>
-  </>
   );
 };
 

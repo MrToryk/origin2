@@ -14,24 +14,24 @@ import Register from "./components/Register";
 function App() {
   return (
     <>
-          <AuthProvider>
-          <Nav />
-          <div className="container">
-            <Routes>
+      <AuthProvider>
+        <Nav />
+        <div className="container h-100">
+          <Routes>
             <Route path="/" element={<Main />} />
             <Route path="/register" element={<Register />} />
             <Route path="/categories" element={<Categories />} />
-                <Route path="/cart" element={<Cart />} />
-                <Route path="/product" element={<Product />} />
-                <Route path="/login" element={<Login />} />
-                <Route element={<PrivateRoute />}>
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="*" element={<Navigate to="/" />} />
-              </Route>
-            </Routes>
-            </div>
-          </AuthProvider>
-      </>
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/product" element={<Product />} />
+            <Route path="/login" element={<Login />} />
+            <Route element={<PrivateRoute />}>
+              <Route path="/dashboard" element={<Dashboard />} />
+            </Route>            
+            <Route path="*" element={<Navigate to="/" />} />
+          </Routes>
+        </div>
+      </AuthProvider>
+    </>
   );
 }
 

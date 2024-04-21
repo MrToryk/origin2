@@ -1,15 +1,8 @@
+//import { Link } from "react-router-dom";
+//import useFetch from "../hooks/useFetch";
 
-const Categories = () => {
-    return (
-      <div className="row">
-        <div className="col-3">
-            <h1>Categories</h1>
-        </div>
-        <div className="col">
-            <h1>Items</h1>
-        </div>
-      </div>
-    );
+const Category = () => {
+
   };
   
-  export default Categories;
+  export default Category;
