@@ -18,9 +18,41 @@ namespace WebAPI.Repository
             var productEntity = _context.Products.Where(s => s.Id == productId).FirstOrDefault();
             var userEntity = _context.Users.Where(u => u.Id == userId).FirstOrDefault();
 
+            // Entity null check
+            if (productEntity == null || userEntity == null)
+                return false;
+
             sale.Product = productEntity;
             sale.User = userEntity;
 
+            // Sale input check
+            if (sale.SoldAmount > productEntity.StoredAmount || sale.SoldAmount < 1)
+                return false;
+
+            productEntity.StoredAmount -= sale.SoldAmount;
+
+            // Product expiration check
+            if (productEntity.ExpireDate != null)
+            if (DateOnly.FromDateTime(sale.SaleDate) > productEntity.ExpireDate)
+                return false;
+
+            // Dsicount evaluation
+            var discountEntity = _context.Discounts.Where(d => d.DiscountProducts.Contains(productEntity)).FirstOrDefault();
+
+            double pricePerUnit = productEntity.SellingPrice;
+
+            if (discountEntity != null)
+            {
+                if (sale.SaleDate > discountEntity.StartingDate
+                    && sale.SaleDate < discountEntity.EndingDate)
+                    pricePerUnit = pricePerUnit * (100 - discountEntity.DiscountValue) / 100;
+            }
+
+            pricePerUnit = pricePerUnit < productEntity.MinimalPrice ? productEntity.MinimalPrice : pricePerUnit;
+
+            sale.PricePerUnit = pricePerUnit;
+
+            // Add
             _context.Add(sale);
 
             return Save();

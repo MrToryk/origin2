@@ -6,7 +6,7 @@
         public string Name { get; set; }
         public double MinimalPrice { get; set; }
         public double SellingPrice { get; set; }
-        public int StoredAmmount { get; set; }
+        public int StoredAmount { get; set; }
         public DateOnly IssueDate { get; set; }
         public DateOnly? ExpireDate { get; set; }
         public User Owner { get; set; }
