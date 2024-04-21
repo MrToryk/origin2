@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { properties as url } from '../properties.js';
 
 const AuthContext = createContext();
-
 const AuthProvider = ({ children }) => {
   let site = JSON.parse(localStorage.getItem('site'));
   const [user, setUser] = useState({});
