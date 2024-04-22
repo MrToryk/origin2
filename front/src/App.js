@@ -5,7 +5,7 @@ import { Nav } from "./components/Nav";
 import './App.css';
 import AuthProvider from "./hooks/AuthProvider";
 import PrivateRoute from "./router/route";
-import { Main } from "./components/Main";
+import Store from "./components/Store.js";
 import Product from "./components/Product";
 import Register from "./components/Register";
 import { useState, useEffect, useCallback } from 'react';
@@ -20,7 +20,7 @@ function App() {
   const [categories, setCategories] = useState(null);
   const [products, setProducts] = useState(null);
 
-  const {result: categories_, } = useFetchType("category", url.api.cart.category);
+  const {result: categories_, } = useFetchType("category", url.api.cart.categories);
   const {result: products_, } = useFetchType("products", url.api.cart.products);
   console.log("app", site, cart);
 
@@ -81,13 +81,13 @@ function App() {
         <Nav cart={cartCount} />
         <div className="container h-100">
           <Routes>
-            <Route path="/" element={<Main 
+            <Route path="/" element={<Store 
                 categories={categories} 
                 products={products} 
                 cart={cart}
                 onAddToCart={handleAddToCart} 
             />} />
-            <Route path="/category/:slug" element={<Main 
+            <Route path="/category/:slug" element={<Store 
                 categories={categories} 
                 products={products} 
                 cart={cart}

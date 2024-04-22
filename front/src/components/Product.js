@@ -1,11 +1,5 @@
-//import { useState, useEffect } from 'react';
-
-//import { useState } from "react";
 
 const Product = ({product, amount=0, lastInStock=0, cartView=false, onAddToCart, onChangeAmount, onRemoveFromCart}) => {
-    //const [_amount, setAmount] = useState(amount);
-
-    
     const changeAmount = (m) => {
       let newAmount = amount + m;
 
@@ -107,7 +101,7 @@ const Product = ({product, amount=0, lastInStock=0, cartView=false, onAddToCart,
                     ?  <>
                       <div className="input-group mb-3">
                         <button onClick={() => changeAmount(-1)} className="btn btn-outline-secondary" type="button" id="button-less"><i className="bi bi-chevron-left"></i></button>
-                        <input onChange={event => handleChangeAmount(event.target.value)} type="text" className="form-control" aria-label="Amount" aria-describedby="amount" value={amount}/>
+                        <input onChange={(event) => handleChangeAmount(event.target.value)} type="text" className="form-control" aria-label="Amount" aria-describedby="amount" value={amount}/>
                         <button onClick={() => changeAmount(1)} className="btn btn-outline-secondary" type="button" id="button-more"><i className="bi bi-chevron-right"></i></button>
                         <button onClick={() => remove(product.id)} className="btn btn-danger" test={product.id} type="button" id="button-more"><i className="bi bi-trash"></i></button>
                       </div>

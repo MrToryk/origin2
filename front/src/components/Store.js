@@ -1,9 +1,8 @@
-//import { useEffect } from 'react';
 import Product from "./Product";
 import { Link, useParams } from "react-router-dom";
 
 
-const Main = ({categories, products, cart, onAddToCart}) => {
+const Store = ({categories, products, cart, onAddToCart}) => {
     const params = useParams();
     //console.log(categories, products);
     const menu = categories && categories.map(item => 
@@ -59,4 +58,4 @@ const Main = ({categories, products, cart, onAddToCart}) => {
       );
     };
     
-export { Main };
+export default Store;

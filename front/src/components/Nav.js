@@ -8,7 +8,7 @@ function Nav({cart}) {
         <nav className="navbar border-bottom border-body">
             <div className="container">
                 <div className="navbar-nav">
-                    <Link to="/" className="nav-item nav-link">Main</Link>                     
+                    <Link to="/" className="nav-item nav-link">Home</Link>                     
                 </div>
                 <div className='d-flex justify-content-end gap-3'>
                     
