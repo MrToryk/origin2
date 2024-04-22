@@ -40,7 +40,7 @@ export const useFetchType = (type, url) => {
     result = data[type].data;
     message = data[type].message;
   }
-
+  //console.log("useFetchType", result, message, data, type);
   return {result, message};
 }
 

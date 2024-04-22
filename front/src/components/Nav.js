@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useAuth } from "../hooks/AuthProvider";
 
-function Nav() {
+function Nav({cart}) {
+    //console.log("Nav", cart);
     const auth = useAuth(); 
     return (
         <nav className="navbar border-bottom border-body">
@@ -10,7 +11,16 @@ function Nav() {
                     <Link to="/" className="nav-item nav-link">Main</Link>                     
                 </div>
                 <div className='d-flex justify-content-end gap-3'>
-                    <Link to="/cart" className="nav-item nav-link"><i className="bi bi-cart"></i></Link>  
+                    
+                    <Link to="/cart" className="nav-item nav-link position-relative">
+                        <i className="bi bi-cart"></i>
+                        { cart > 0 &&
+                            <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                { cart }
+                                <span className="visually-hidden">items in the cart</span>
+                            </span>
+                        }          
+                    </Link>  
                     {auth?.token 
                         ?  <div className="nav-item dropdown ml-4">
                                 <Link className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

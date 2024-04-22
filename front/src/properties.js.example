@@ -2,6 +2,8 @@ export const properties = {
     api: {
         login: "http://127.0.0.1:3658/m1/514544-474148-default/login",
         register: "http://127.0.0.1:3658/m1/514544-474148-default/register",
-        products: "http://127.0.0.1:3658/m1/514544-474148-default/products"
+        products: "http://127.0.0.1:3658/m1/514544-474148-default/products",
+        categories: "http://127.0.0.1:3658/m1/514544-474148-default/categories",
+        buy: "http://127.0.0.1:3658/m1/514544-474148-default/buy",
     }
 };
