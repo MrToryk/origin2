@@ -11,7 +11,7 @@ const AuthProvider = ({ children }) => {
 
   const loginAction = async (data) => {
     try {
-      const response = await fetch(url.api.login, {
+      const response = await fetch(url.api.user.login, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -36,7 +36,7 @@ const AuthProvider = ({ children }) => {
 
   const registerAction = async (data) => {
     try {
-      const response = await fetch(url.api.register, {
+      const response = await fetch(url.api.user.register, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -61,7 +61,7 @@ const AuthProvider = ({ children }) => {
   const changeAction = async (data) => {
     try{
       let site = JSON.parse(localStorage.getItem('site'));
-      const response = await fetch(url.api.change, {
+      const response = await fetch(url.api.user.update, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -20,8 +20,8 @@ function App() {
   const [categories, setCategories] = useState(null);
   const [products, setProducts] = useState(null);
 
-  const {result: categories_, } = useFetchType("category", url.api.category);
-  const {result: products_, } = useFetchType("products", url.api.products);
+  const {result: categories_, } = useFetchType("category", url.api.cart.category);
+  const {result: products_, } = useFetchType("products", url.api.cart.products);
   console.log("app", site, cart);
 
 
