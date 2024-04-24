@@ -9,7 +9,16 @@ function Nav({cart}) {
             <div className="container">
                 <div className="navbar-nav">
                     <Link to="/" className="nav-item nav-link">Home</Link>                     
+                </div>{auth.user.role==="admin" && <>
+                <div className="navbar-nav">
+                    <Link to="/admin/products" className="nav-item nav-link">Products</Link>                     
                 </div>
+                <div className="navbar-nav">
+                    <Link to="/admin/users" className="nav-item nav-link">Users</Link>                     
+                </div>
+                <div className="navbar-nav">
+                    <Link to="/admin/sales" className="nav-item nav-link">Sales</Link>                     
+                </div></>}
                 <div className='d-flex justify-content-end gap-3'>
                     
                     <Link to="/cart" className="nav-item nav-link position-relative">
@@ -27,7 +36,7 @@ function Nav({cart}) {
                                     {auth.user.name}
                                 </Link>
                                 <ul className="dropdown-menu">
-                                    <li><Link className="dropdown-item" to="/dashboard">Dashboard</Link></li>
+                                    <li><Link className="dropdown-item" to={auth.user.role==="admin" ? "/admin/dashboard" : "/dashboard"}>Dashboard</Link></li>
                                     <li><hr className="dropdown-divider" /></li>
                                     <li><Link className="dropdown-item"  onClick={() => auth.logOut()}>Logout</Link></li>
                                 </ul>
