@@ -10,8 +10,19 @@ export const properties = {
             categories: "http://127.0.0.1:3658/m1/514544-474148-default/cart/categories",
             checkout: "http://127.0.0.1:3658/m1/514544-474148-default/cart/checkout",
         },
-        admin: {
-            
-        }
+        admin:{
+            product: { 
+                new: "http://127.0.0.1:3658/m1/514544-474148-default/admin/product/new",
+                edit: "http://127.0.0.1:3658/m1/514544-474148-default/admin/product/edit/",
+                list: "http://127.0.0.1:3658/m1/514544-474148-default/admin/product/list",
+                delete: "http://127.0.0.1:3658/m1/514544-474148-default/admin/product/delete/",
+            },
+            category: { 
+                new: "http://127.0.0.1:3658/m1/514544-474148-default/admin/category/new/",
+                edit: "http://127.0.0.1:3658/m1/514544-474148-default/admin/category/edit/",
+                list: "http://127.0.0.1:3658/m1/514544-474148-default/admin/category/list",
+                delete: "http://127.0.0.1:3658/m1/514544-474148-default/admin/category/delete/"
+            },
+        },
     }
 };
