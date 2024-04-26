@@ -10,6 +10,16 @@
   border: 2px;
   color: rgba(255,255,255,.75);
 } */
+.adm{
+  color:crimson;
+  text-decoration: line-through;
+}
+.grn{
+  color:green;
+}
+.blue{
+  color: blue;
+}
 .tbl{
   height: 100px;
 }

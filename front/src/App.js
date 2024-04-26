@@ -17,6 +17,7 @@ import { properties as url } from './properties.js';
 import Cart from "./components/Cart.js";
 import Products from './components/admin/Products.js';
 import {default as Edit} from './components/admin/Edit.js';
+import CategoryEdit from './components/admin/Categories.js';
 
 function App() {
   var site = JSON.parse(localStorage.getItem("site")) || {};
@@ -115,6 +116,8 @@ function App() {
               <Route path="/admin/Products" element={<Products />}/>
               <Route path="/admin/users" element={<Users />} />
               <Route path="/admin/products/edit/:slug" element={<Edit/>}/>
+              <Route path="/admin/categories/edit/:slug" element={<CategoryEdit/>}/>
+              <Route path="/admin/categories/new" element={<CategoryEdit isNew={true}/>}/>
               <Route path="/admin/products/new" element={<Edit isNew={true}/>}/>
             </Route>           
             <Route path="*" element={<Navigate to="/" />} />
