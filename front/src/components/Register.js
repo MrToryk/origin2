@@ -4,10 +4,13 @@ import { Link } from "react-router-dom";
 
 const Register = () => {
   const [input, setInput] = useState({
-    username: "",
+
+    userCreate:
+    {username: "",
     name: "",
     password: "",
     rpassword: "",
+    }
   });
   const auth = useAuth();
   const handleSubmitEvent = (e) => {
