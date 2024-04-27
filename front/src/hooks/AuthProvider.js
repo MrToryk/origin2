@@ -13,6 +13,7 @@ const AuthProvider = ({ children }) => {
     try {
       const response = await fetch(url.api.user.login, {
         method: "POST",
+        mode: 'cors',
         headers: {
           "Content-Type": "application/json",
         },
@@ -38,7 +39,7 @@ const AuthProvider = ({ children }) => {
     try {
       const response = await fetch(url.api.user.register, {
         method: "POST",
-        mode: 'cors',
+        mode: "cors",
         headers: {
           "Content-Type": "application/json",
         },

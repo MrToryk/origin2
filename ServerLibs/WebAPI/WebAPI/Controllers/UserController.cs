@@ -4,6 +4,7 @@ using WebAPI.Interfaces;
 using WebAPI.Models;
 using WebAPI.Dto;
 using WebAPI.Repository;
+using Azure;
 
 namespace WebAPI.Controllers
 {
@@ -19,7 +20,12 @@ namespace WebAPI.Controllers
             _userRepository = userRepository;
             _mapper = mapper;
         }
-
+        [HttpOptions]
+        [ProducesResponseType(200)]
+        public IActionResult UserOptions()
+        {
+            return Ok("Allow: OPTIONS, GET, POST");
+        }
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(ICollection<User>))]
         public IActionResult GetUsers()
@@ -45,7 +51,10 @@ namespace WebAPI.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            return Ok(user);
+            string token = "ASDFVARTWE4FTW35T2452Y45Y354T";
+            string message = "All ok";
+            string status = "ok";
+            return Ok(new { user, token, message, status });
         }
 
         [HttpGet("products/{userId}")]
@@ -88,11 +97,11 @@ namespace WebAPI.Controllers
             if (userCreate == null)
                 return BadRequest(ModelState);
 
-            var user = _userRepository.GetUsers()
+            var userInput = _userRepository.GetUsers()
                 .Where(r => r.Username.Trim().ToUpper() == userCreate.Username.Trim().ToUpper())
                 .FirstOrDefault();
 
-            if (user != null)
+            if (userInput != null)
             {
                 ModelState.AddModelError("", "User already exists");
                 return StatusCode(422, ModelState);
@@ -109,7 +118,16 @@ namespace WebAPI.Controllers
                 return StatusCode(500, ModelState);
             }
 
-            return Ok("Successfully");
+            string token = "ASDFVARTWE4FTW35T2452Y45Y354T";
+            string message = "All ok";
+            string status = "ok";
+            var user = new
+            {
+                status = "active",
+                username = userMap.Username,
+                id = userMap.Id
+            };
+            return Ok(new { user, token, message, status });
         }
 
         [HttpPut("{userId}")]
@@ -134,7 +152,7 @@ namespace WebAPI.Controllers
 
             if (!_userRepository.UpdateUser(userMap, roleId))
             {
-                ModelState.AddModelError("", "Something went wrong while updating user");
+                ModelState.AddModelError("", "Something went wrong while updating userInput");
                 return StatusCode(500, ModelState);
             }
 
@@ -160,7 +178,7 @@ namespace WebAPI.Controllers
 
             if (!_userRepository.DeleteUser(userToDelete))
             {
-                ModelState.AddModelError("", "Something went wrong while deleting user");
+                ModelState.AddModelError("", "Something went wrong while deleting userInput");
             }
 
             return NoContent();
