@@ -1,1 +1,6 @@
 front/src/properties.js
+**/.vs/**
+*/.vs/*
+ServerLibs/WebAPI/WebAPI/appsettings.json
+ServerLibs/WebAPI/WebAPI/bin/*
+ServerLibs/WebAPI/WebAPI/obj/*

@@ -30,7 +30,7 @@ builder.Services.AddDbContext<DataContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
-
+builder.Services.AddCors();
 var app = builder.Build();
 
 if (args.Length == 1 && args[0].ToLower() == "seeddata")
@@ -46,7 +46,7 @@ void SeedData(IHost app)
         service.SeedDataContext();
     }
 }
-
+app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000"));
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

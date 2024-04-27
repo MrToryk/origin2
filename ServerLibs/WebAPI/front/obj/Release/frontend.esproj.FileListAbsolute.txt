@@ -1,0 +1,1 @@
+C:\Users\ilyag\Documents\GitHub\ST_Project_2024\ServerLibs\WebAPI\front\obj\Release\frontend.esproj.CoreCompileInputs.cache
