@@ -274,3 +274,10 @@ C:\Users\ilyag\Documents\GitHub\ST_Project_2024\ServerLibs\WebAPI\WebAPI\obj\Deb
 C:\Users\ilyag\Documents\GitHub\ST_Project_2024\ServerLibs\WebAPI\WebAPI\obj\Debug\net8.0\WebAPI.pdb
 C:\Users\ilyag\Documents\GitHub\ST_Project_2024\ServerLibs\WebAPI\WebAPI\obj\Debug\net8.0\WebAPI.genruntimeconfig.cache
 C:\Users\ilyag\Documents\GitHub\ST_Project_2024\ServerLibs\WebAPI\WebAPI\obj\Debug\net8.0\ref\WebAPI.dll
+D:\GitHub\Project\ST_Project_2024\ServerLibs\WebAPI\WebAPI\bin\Debug\net8.0\System.Web.Mvc.dll
+D:\GitHub\Project\ST_Project_2024\ServerLibs\WebAPI\WebAPI\bin\Debug\net8.0\System.Web.Razor.dll
+D:\GitHub\Project\ST_Project_2024\ServerLibs\WebAPI\WebAPI\bin\Debug\net8.0\System.Web.Helpers.dll
+D:\GitHub\Project\ST_Project_2024\ServerLibs\WebAPI\WebAPI\bin\Debug\net8.0\System.Web.WebPages.Deployment.dll
+D:\GitHub\Project\ST_Project_2024\ServerLibs\WebAPI\WebAPI\bin\Debug\net8.0\System.Web.WebPages.Razor.dll
+D:\GitHub\Project\ST_Project_2024\ServerLibs\WebAPI\WebAPI\bin\Debug\net8.0\System.Web.WebPages.dll
+D:\GitHub\Project\ST_Project_2024\ServerLibs\WebAPI\WebAPI\bin\Debug\net8.0\Microsoft.Web.Infrastructure.dll
