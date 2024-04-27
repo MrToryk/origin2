@@ -39,7 +39,7 @@ const AuthProvider = ({ children }) => {
     try {
       const response = await fetch(url.api.user.register, {
         method: "POST",
-        mode: "cors",
+        mode: "no-cors",
         headers: {
           "Content-Type": "application/json",
         },
@@ -65,7 +65,7 @@ const AuthProvider = ({ children }) => {
       let site = JSON.parse(localStorage.getItem('site'));
       const response = await fetch(url.api.user.update, {
         method: "POST",
-        mode: 'cors',
+        mode: 'no-cors',
         headers: {
           "Content-Type": "application/json",
           "x-token": site?.token,
